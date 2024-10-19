@@ -1,5 +1,5 @@
 import streamlit as st
-import streamlit.components.v1 as components
+import streamlit.components.v1 as components  # Import the correct components module
 
 # Title
 st.title("Circuit Builder Challenge")
@@ -30,23 +30,23 @@ components_info = {
 
 # Sidebar for component selection
 st.sidebar.header("Select Components")
-components = st.sidebar.multiselect(
+selected_components = st.sidebar.multiselect(  # Renamed to avoid conflict
     "Choose components to build your circuit:",
     list(components_info.keys()),
 )
 
 # Circuit area (placeholder for demonstration)
 st.header("Circuit Area")
-if components:
+if selected_components:  # Updated reference
     st.write("You have selected:")
-    for component in components:
+    for component in selected_components:  # Updated reference
         st.write(f"- {components_info[component]['symbol']} {component}")
         st.write(f"  * {components_info[component]['description']}")
     
     # Validate circuit components (basic logic)
     valid_circuit = False
-    if "Battery" in components:
-        if "Resistor" in components or "LED" in components:
+    if "Battery" in selected_components:  # Updated reference
+        if "Resistor" in selected_components or "LED" in selected_components:  # Updated reference
             valid_circuit = True
     
     # Show validation result
@@ -76,4 +76,4 @@ circuit_html = """
 """
 
 # Display the circuit area
-components.html(circuit_html, height=600)
+components.html(circuit_html, height=600)  # This now refers to the correct components module
